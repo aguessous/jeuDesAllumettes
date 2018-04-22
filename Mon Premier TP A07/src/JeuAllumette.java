@@ -19,14 +19,13 @@ public class JeuAllumette {
 		int numJoueur = 1;
 		while(!finPartie) {
 		jouer(numJoueur);
-		numJoueur=changeJoueur(numJoueur);
+		numJoueur=changerJoueur(numJoueur);
 		if(nbAllumettes<=0) finPartie=true;
 		}
-		
 		afficherGagnant(numJoueur);
 	}
 	
-	protected int resteAllumette () {
+	protected int choixMax () {
 		int max = 0;
 		if (nbAllumettes>=3) max = 3;
 		else if (nbAllumettes==2) max = 2;
@@ -37,25 +36,25 @@ public class JeuAllumette {
 	protected void jouer (int numJoueur) {
 		System.out.println("Il reste "+nbAllumettes+" allumettes");
 		System.out.println("Joueur #"+numJoueur+" : Combien d’allumettes prenez-vous?");
-		testSaisie(numJoueur);
-	}
-	
-	protected void testSaisie (int numJoueur) {
 		int choix = 0;
-		
+		try {
 		choix = clavier.nextInt();
-		
-		while(choix<1 || choix>resteAllumette()) {
-		if(resteAllumette()==1) System.out.println("Erreur : Vous devez prendre 1 allumette"); 
-		else System.out.println("Erreur : Vous devez prendre entre 1 et "+resteAllumette()+" allumettes");
+		while(choix<1 || choix>choixMax()) {
+		if(choixMax()==1) System.out.println("Erreur : Vous devez prendre 1 allumette"); 
+		else System.out.println("Erreur : Vous devez prendre entre 1 et "+choixMax()+" allumettes");
 		System.out.println("Joueur #"+numJoueur+" : Combien d’allumettes prenez-vous?");
-		choix = clavier.nextInt();}
+		choix = clavier.nextInt();
+		}
 		nbAllumettes -=choix;
-		
-		
-	}
+		}
+		catch (Exception e) {
+			System.out.println("Erreur : merci de saisir un nombre");
+			clavier.next();
+			jouer(numJoueur);}
+		}
+
 	
-	protected int changeJoueur(int numJoueur) {
+	protected int changerJoueur(int numJoueur) {
 		if (numJoueur ==1) numJoueur = 2;
 		else numJoueur =1;
 		return numJoueur;

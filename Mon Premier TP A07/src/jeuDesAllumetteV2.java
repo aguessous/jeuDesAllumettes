@@ -1,7 +1,6 @@
-
 import java.util.Scanner;
 
-public class JeuAllumette {
+public class jeuDesAllumetteV2 {
 
 	private static int nbAllumettes = 16;
 	private static Scanner clavier = new Scanner (System.in);
@@ -50,9 +49,7 @@ public class JeuAllumette {
 		catch (Exception e) {
 			System.out.println("Erreur : merci de saisir un nombre");
 			clavier.next();
-			
-			jouer(numJoueur);
-			}
+			jouer(numJoueur);}
 		}
 
 	
@@ -66,3 +63,4 @@ public class JeuAllumette {
 		System.out.println("Gagnant : Joueur #"+numJoueur);
 	}
 }
+
